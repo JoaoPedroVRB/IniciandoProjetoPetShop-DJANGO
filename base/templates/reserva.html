@@ -2,21 +2,17 @@
 {% load bootstrap5 %}
 
 {% block principal %}
-    <h1>Fale Conosco</h1>
-    <p>Envie uma mensagem atravéz do formulário abaixo ou ligue para o telefone {{ telefone }}
-        falando com a responsável {{ responsavel|upper }}
-    </p>
+    <h1>Faça sua reserva já!</h1>
+    
     {% if sucesso %}
-    <p class="alert alert-success"> Enviado com sucesso !</p>
+    <p class="alert alert-success"> Reserva feita com sucesso !</p>
     {% else %}
     <form action="" method="post" novalidate>
         {% csrf_token %}
         <div>
-            {% bootstrap_form form %}
+            {% bootstrap_form formulario %}
             <button type="submit" class="btn btn-primary">Enviar mensagem</button>
         </div>
     </form>
     {% endif %}
 {% endblock principal %}
-
-

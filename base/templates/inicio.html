@@ -33,9 +33,17 @@
         </header>
 
         <main>
+            {% block principal %}
             <h1>Reserve o banho do seu pet!</h1>
+            <p>Faça sua reserva agora com a gente, nao perca tempo!</p>
 
-            <a href="{% url 'contato' %}">Fale Conosco</a>
+            <a href="{% url 'reserva' %}" class="btn btn-primary btn-lg px-4">Faça sua reserva</a>
+
+            <h1>Entre em contato conosco!</h1>
+            <p>Entre em contato, e fale conosco.</p>
+
+            <a href="{% url 'contato' %}" class="btn btn-primary btn-lg px-4">Fale conosco</a>
+            {% endblock principal %}
         </main>
 
         <footer class="pt-5 my-5 text-muted border-top">
