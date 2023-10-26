@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from base.forms import ContatoForm,ReservaForm
-from base.models import contato
+
 
 def inicio(request):
     return render(request,'inicio.html')
 
 def contato(request):
     sucesso = False
+    
     form = ContatoForm(request.POST or None)
     if form.is_valid():
         sucesso = True
@@ -21,9 +22,11 @@ def contato(request):
 
 def reserva(request):
     sucesso = False
+
     form = ReservaForm(request.POST or None)
     if form.is_valid():
         sucesso = True
+        form.save()
     contexto = {
         'formulario': form,
         'sucesso': sucesso,

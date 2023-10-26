@@ -1,13 +1,66 @@
 from django import forms
-from base.models import contato
+from base.models import Contato,Reserva
 
 class ContatoForm(forms.ModelForm):
     class Meta:
-        model = contato
+        model = Contato
         fields = ['nome','email','mensagem']
 
-class ReservaForm(forms.Form):
-    nome_do_pet = forms.CharField(max_length=50)
-    telefone = forms.CharField(max_length=12)
-    dia_da_reserva = forms.DateField()
-    observacoes = forms.CharField(required=False, widget=forms.Textarea)
+        widgets = {
+            'nome': forms.TextInput(
+                attrs= {
+                    'placeholder': 'Insira o seu nome aqui !'
+                }
+            ),
+
+             'email': forms.TextInput(
+                attrs= {
+                    'placeholder': 'Insira o seu e-mail aqui !'
+                }
+            ),
+
+             'mensagem': forms.TextInput(
+                attrs= {
+                    'placeholder': 'Insira a sua mensagem aqui !'
+                }
+            )
+        }
+        labels = {
+            'nome': 'Nome:',
+            'email': 'E-mail:',
+            'mensagem': 'Mensagem:'
+        }
+
+class ReservaForm(forms.ModelForm):
+    class Meta:
+        model = Reserva
+        fields = ['nome_pet','telefone','dia_reserva','observacao']
+
+        widgets = {
+            'nome_pet': forms.TextInput(
+                attrs= {
+                    'placeholder': 'Insira o nome do seu pet aqui !'
+                }
+            ),
+
+             'telefone': forms.TextInput(
+                attrs= {
+                    'placeholder': 'Insira seu telefone aqui !'
+                }
+            ),
+
+            'data_reserva': forms.DateInput(),
+
+             'observacao': forms.TextInput(
+                attrs= {
+                    'placeholder': 'Insira a sua observação aqui !'
+                }
+            )
+        }
+
+        labels = {
+    'nome_pet': 'Nome do Pet:',
+    'telefone': 'Telefone:',
+    'dia_reserva': 'Dia da Reserva:',
+    'observacao': 'Observação:'
+}
